@@ -1,6 +1,7 @@
 import numpy as np
 import random
 import time
+import sys
 
 # Q-learning parameters
 alpha = 0.1  # Learning rate
@@ -94,6 +95,9 @@ def solve_magic_square(n):
     train_end_time = time.time()  # End training timer
     train_time = train_end_time - train_start_time  # Compute training duration
 
+    # Measure memory usage
+    memory_used = sys.getsizeof(Q_table) / 1024  # Convert to KB
+
     # Testing phase (use learned policy to construct the magic square)
     test_start_time = time.time()  # Start inference timer
 
@@ -118,6 +122,7 @@ def solve_magic_square(n):
 
     print(f"\n⏳ Training Time: {train_time:.2f} seconds")
     print(f"⏳ Inference Time: {test_time:.6f} seconds")
+    print(f"💾 Memory Used: {memory_used:.2f} KB")
 
 
 def main():
